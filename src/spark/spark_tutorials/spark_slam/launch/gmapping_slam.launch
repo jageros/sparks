@@ -1,0 +1,11 @@
+<launch>
+  <include file="$(find spark_bringup)/launch/driver_bringup.launch" />
+
+  <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" 
+	args="image:=/camera/depth/image_raw">
+  </node>
+
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping"/>
+  <include file="$(find room_base)/launch/move_base.launch"/>
+
+</launch>

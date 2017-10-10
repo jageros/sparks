@@ -1,0 +1,32 @@
+<launch>
+    <!-- Load the URDF/Xacro model of our robot -->
+    <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find spark_urdf)/urdf/box_robot_base_with_laser.xacro'" />
+
+    <param name="robot_description" command="$(arg urdf_file)" />
+    
+    <param name="/mobile_base/robot_description" command="$(arg urdf_file)" />
+ <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <node name="spawn_turtlebot_model" pkg="gazebo_ros" type="spawn_model"
+        args="-urdf -param robot_description -model mobile_base"/>
+
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find spark_urdf)/param/controller.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	output="screen" ns="/mobile_base" args="joint_state_controller
+					  mr_controller"/>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+	respawn="false" output="screen">
+    <remap from="/joint_states" to="/mobile_base/joint_states" />
+  </node>
+
+
+</launch>

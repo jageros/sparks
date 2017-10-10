@@ -1,0 +1,9 @@
+﻿#BNF+IAT 1.0 UTF-8;
+
+!grammar voice;
+!slot <text>;
+
+!start <text>;
+<text>:开始语音控制|结束语音控制|前进|后退|forward|ahead|back|backward|向左|向右|左|右|转圈|左转圈|右转圈|停止|stop|去端茶|"get me the tea"|回家|home|快|慢|快点|慢点|faster|"speed up"|slower|"speed up"|"slow down"|你好|你叫什么|你叫什么名字|你几岁了|你多大了|我们聊聊天|陪我聊聊天|聊天|聊聊天;
+
+

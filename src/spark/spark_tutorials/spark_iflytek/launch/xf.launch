@@ -1,0 +1,6 @@
+<launch>
+    <node name="xf_asr" pkg="spark_iflytek" type="xf_asr" />
+    <node name="xf_tts" pkg="spark_iflytek" type="xf_tts" />
+    <node name="vad" pkg="spark_iflytek" type="vad" />
+    <node name="parse" pkg="spark_iflytek" type="parse.py" />
+</launch>

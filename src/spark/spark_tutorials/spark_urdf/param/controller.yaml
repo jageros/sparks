@@ -1,0 +1,15 @@
+mobile_base:
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 20  
+  mr_controller:
+    type: "diff_drive_controller/DiffDriveController"
+    left_wheel: "base_l_wheel_joint"
+    right_wheel: "base_r_wheel_joint"
+    wheel_separation: 0.385
+    wheel_radius: 0.06191
+    publish_rate: 50.0 # defaults to 50
+    pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+    twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+    cmd_vel_timeout: 20.0 # we test this separately, give plenty for the other tests
+

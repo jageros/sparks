@@ -1,0 +1,6 @@
+<launch>
+     <node name="turtlesim_node" pkg="turtlesim" type="turtlesim_node" />
+     <node name="voice_command" pkg="spark_iflytek" type="voice_command.py" >
+        <remap from="/cmd_vel" to="/turtle1/cmd_vel"/>
+     </node>
+</launch>
